@@ -1,4 +1,9 @@
 
+// Sound effects
+const flipSound = new Audio("sounds/flip.mp3");
+const matchSound = new Audio("sounds/match.mp3");
+const winSound = new Audio("sounds/win.mp3");
+
 const menu = document.getElementById("menu");
 const gameSection = document.getElementById("game");
 const difficultySelect = document.getElementById("difficulty");
@@ -73,6 +78,7 @@ function flipCard(){
         this.classList.add("flipped");
         this.textContent=this.dataset.emoji;
         flippedCards.push(this);
+        flipSound.play();
 
         if(flippedCards.length===2){
             moves++;
@@ -86,11 +92,16 @@ function flipCard(){
 function checkMatch(){
     const [card1,card2]=flippedCards;
     if(card1.dataset.emoji===card2.dataset.emoji){
+        matchSound.play();
         flippedCards=[];
         matchedCount+=2;
         if(matchedCount===cardArray.length){
             stopTimer();
-            setTimeout(()=>{ animateStars(); alert(`You won! Moves: ${moves}, Time: ${timerDisplay.textContent}`); },300);
+            setTimeout(()=>{
+                winSound.play();
+                animateStars();
+                alert(`You won! Moves: ${moves}, Time: ${timerDisplay.textContent}`);
+            },300);
         }
     } else {
         setTimeout(()=>{
