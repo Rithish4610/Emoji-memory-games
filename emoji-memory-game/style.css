@@ -1,0 +1,160 @@
+
+.container {
+    text-align: center;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: #f0f8ff;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.difficulty-btn {
+    background: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+.difficulty-btn:hover {
+    background: #388e3c;
+}
+
+#start-btn, #restart-btn {
+    background: #2196f3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+#start-btn:hover, #restart-btn:hover {
+    background: #1565c0;
+}
+
+.game-board {
+    display: grid;
+    grid-gap: 15px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.card {
+    width: 80px;
+    height: 80px;
+    background: #4caf50;
+    color: white;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+.card.flipped {
+    background: #fff;
+    color: #000;
+    transform: rotateY(180deg);
+}
+
+.stars {
+    font-size: 40px;
+    margin-top: 20px;
+    color: #ccc;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.stars .star {
+    transition: color 0.5s ease, transform 0.3s ease;
+}
+.stars .star.filled {
+    color: gold;
+    transform: scale(1.2);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f0f8ff;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+.container > div:first-child {
+    margin-bottom: 15px;
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.game-board {
+    display: grid;
+    grid-gap: 15px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.card {
+    width: 80px;
+    height: 80px;
+    background: #4caf50;
+    color: white;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 10px;
+    transform: rotateY(0deg);
+    transition: transform 0.3s;
+}
+
+.card.flipped {
+    background: #fff;
+    color: #000;
+    transform: rotateY(180deg);
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#confetti {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 999;
+    display: none;
+}
