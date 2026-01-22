@@ -1,3 +1,20 @@
+# Responsive design for mobile
+@media (max-width: 600px) {
+    .game-board {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+    }
+
+    .card {
+        height: 70px;
+        font-size: 1.5rem;
+    }
+
+    button {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
 
 .container {
     text-align: center;
