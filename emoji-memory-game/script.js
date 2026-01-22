@@ -172,11 +172,32 @@ document.querySelectorAll(".difficulty-btn").forEach(btn=>{
     });
 });
 
+
 startBtn.addEventListener("click",()=>{
     startPage.style.display="none";
     gamePage.style.display="block";
-    restartGame();
+    resetGame();
 });
 
-restartBtn.addEventListener("click",restartGame);
-            stopTimer();
+restartBtn.addEventListener("click", () => {
+    resetGame();
+});
+
+// Reset / Restart Game
+function resetGame() {
+    moves = 0;
+    matchedCount = 0;
+    flippedCards = [];
+    totalSeconds = 0;
+    movesDisplay.textContent = moves;
+    timerDisplay.textContent = "0:00";
+    stopTimer();
+    createBoard();
+    startTimer();
+    starContainer.innerHTML = "";
+    // Enable all cards (if any were disabled)
+    document.querySelectorAll('.card').forEach(card => {
+        card.classList.remove('flipped');
+        card.textContent = "";
+    });
+}
