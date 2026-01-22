@@ -21,6 +21,13 @@ const timerDisplay = document.getElementById("timer");
 const starContainer = document.getElementById("star-container");
 const confettiCanvas = document.getElementById("confetti");
 
+// Best score display
+const bestScoreDisplay = document.getElementById("best-score");
+const savedBest = localStorage.getItem("bestScore");
+if (savedBest) {
+    bestScoreDisplay.textContent = savedBest;
+}
+
 // Game variables
 const emojis = ["🍎","🍌","🍇","🍓","🍒","🥝","🍍","🍉"];
 let cardArray = [];
@@ -97,6 +104,12 @@ function checkMatch(){
         matchedCount+=2;
         if(matchedCount===cardArray.length){
             stopTimer();
+            // Best score logic
+            let bestScore = localStorage.getItem("bestScore");
+            if (bestScore === null || moves < bestScore) {
+                localStorage.setItem("bestScore", moves);
+                bestScoreDisplay.textContent = moves;
+            }
             setTimeout(()=>{
                 winSound.play();
                 animateStars();
