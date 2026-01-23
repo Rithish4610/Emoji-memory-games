@@ -77,10 +77,59 @@ button {
     text-align: center;
     animation: pop 0.6s ease;
     box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    width: 90%;
+    max-width: 320px;
 }
 
 .win-card h1 {
-    margin-bottom: 10px;
+        margin-bottom: 10px;
+        font-size: 22px;
+}
+
+.stars {
+    font-size: 28px;
+    margin: 10px 0;
+}
+
+.star {
+    opacity: 0;
+    animation: starPop 0.4s ease forwards;
+}
+
+@keyframes starPop {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.confetti {
+    position: fixed;
+    top: -10px;
+    width: 10px;
+    height: 10px;
+    background: hsl(var(--hue, 0), 100%, 50%);
+    animation: fall linear forwards;
+    z-index: 2000;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+@media (max-width: 480px) {
+    .win-card {
+        padding: 20px;
+    }
+    .stars {
+        font-size: 24px;
+    }
 }
 
 .win-card button {

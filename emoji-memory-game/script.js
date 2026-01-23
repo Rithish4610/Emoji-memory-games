@@ -104,15 +104,8 @@ function checkMatch(){
         matchedCount+=2;
         if(matchedCount===cardArray.length){
             stopTimer();
-            // Best score logic
-            let bestScore = localStorage.getItem("bestScore");
-            if (bestScore === null || moves < bestScore) {
-                localStorage.setItem("bestScore", moves);
-                bestScoreDisplay.textContent = moves;
-            }
             setTimeout(()=>{
                 winSound.play();
-                animateStars();
                 showWinPopup(moves, timerDisplay.textContent);
             },300);
         }
@@ -128,12 +121,59 @@ function checkMatch(){
 }
 
 
-// Show Win Popup
+
+// Show Win Popup (with stars, confetti, best score highlight)
 function showWinPopup(moves, time) {
     const popup = document.getElementById("win-popup");
     const stats = document.getElementById("win-stats");
-    stats.textContent = `Moves: ${moves}, Time: ${time}`;
     popup.classList.remove("hidden");
+
+    let text = `Moves: ${moves}, Time: ${time}`;
+    const isBest = updateBestScore(moves);
+    if (isBest) {
+        text += '<br>🏆 <b>New Best Score!</b>';
+        bestScoreDisplay.textContent = moves;
+    }
+    stats.innerHTML = text;
+    showStars(moves);
+    launchConfetti();
+}
+
+// Animated stars in win popup
+function showStars(moves) {
+    const starsDiv = document.getElementById("stars");
+    starsDiv.innerHTML = "";
+    let starCount = moves <= 15 ? 3 : moves <= 25 ? 2 : 1;
+    for (let i = 0; i < starCount; i++) {
+        const star = document.createElement("span");
+        star.textContent = "⭐";
+        star.classList.add("star");
+        star.style.animationDelay = `${i * 0.3}s`;
+        starsDiv.appendChild(star);
+    }
+}
+
+// Confetti effect
+function launchConfetti() {
+    for (let i = 0; i < 30; i++) {
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.animationDuration = 2 + Math.random() * 3 + "s";
+        confetti.style.setProperty('--hue', Math.floor(Math.random() * 360));
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 5000);
+    }
+}
+
+// Best score logic with highlight
+function updateBestScore(moves) {
+    const best = localStorage.getItem("bestScore");
+    if (!best || moves < best) {
+        localStorage.setItem("bestScore", moves);
+        return true;
+    }
+    return false;
 }
 
 // Restart Game (with popup hide)
