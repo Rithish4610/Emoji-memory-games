@@ -113,7 +113,7 @@ function checkMatch(){
             setTimeout(()=>{
                 winSound.play();
                 animateStars();
-                alert(`You won! Moves: ${moves}, Time: ${timerDisplay.textContent}`);
+                showWinPopup(moves, timerDisplay.textContent);
             },300);
         }
     } else {
@@ -127,15 +127,19 @@ function checkMatch(){
     }
 }
 
-// Restart
-function restartGame(){
-    moves=0; matchedCount=0; flippedCards=[]; totalSeconds=0;
-    movesDisplay.textContent=moves;
-    timerDisplay.textContent="0:00";
-    stopTimer();
-    createBoard();
-    startTimer();
-    starContainer.innerHTML="";
+
+// Show Win Popup
+function showWinPopup(moves, time) {
+    const popup = document.getElementById("win-popup");
+    const stats = document.getElementById("win-stats");
+    stats.textContent = `Moves: ${moves}, Time: ${time}`;
+    popup.classList.remove("hidden");
+}
+
+// Restart Game (with popup hide)
+function restartGame() {
+    document.getElementById("win-popup").classList.add("hidden");
+    resetGame();
 }
 
 // Stars
